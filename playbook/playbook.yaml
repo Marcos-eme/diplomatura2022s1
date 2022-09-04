@@ -1,0 +1,24 @@
+  - name: programPlaybook
+    hosts: virtualmachines
+    vars:
+       nombre_container: programContainer
+       repositorio: marcosm/diplomatura2022s1
+       version_img: 1.0.0
+    tasks:
+     - name: Correr imagen desde hub repository
+       command:
+         docker run --name {{nombre_container}} {{repositorio}}:{{version_img}}
+       register: docker_output 
+     - name: Chequear containers
+       command:
+         docker ps -a
+       register: container_ps_output
+     - name: Imprimir resultado de contenedor
+       debug:
+         var: docker_output.stdout_lines
+     - name: Contenedores creados
+       debug:
+         var: container_ps_output.stdout_lines
+     - name: Remover contenedor {{nombre_container}}
+       command: 
+         docker container rm {{nombre_container}}
