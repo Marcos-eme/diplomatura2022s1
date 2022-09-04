@@ -1,6 +1,6 @@
 # diplomatura2022s1
 - inventory.yaml
-  Editar ip en ansible_host y colocar el ip del nodo destino. Tener en cuenta que se debe agregar la ssh key del control-node al authorized keys del managed-node con "ssh -copy-id user@host"
+  Editar ip en ansible_host y colocar el ip del nodo destino. Tener en cuenta que se debe agregar la ssh key del control-node al authorized keys del managed-node con "ssh -copy-id user@host". Para validar que se agregó correctamente y ansible la reconoce, usar ansible virtualmachines -m ping -i inventory.yaml
 - configurar-docker.yaml
   En caso de que sea necesario, se puede instalar docker en el managed node con este playbook. Para eso correr: 
   ansible-playbook -i inventory.yaml configurar-docker.yaml 
